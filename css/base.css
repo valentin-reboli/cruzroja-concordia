@@ -1,0 +1,172 @@
+/* ==========================================================================
+   Base: design tokens, reset, and global element defaults
+   ========================================================================== */
+
+:root {
+  /* Brand red */
+  --color-primary: #B0121A;
+  --color-primary-dark: #8a0e14;
+  --color-primary-tint-1: #fca5a5; /* eyebrow text on the hero photo */
+  --color-primary-tint-2: #fecaca; /* eyebrow text on solid red sections */
+  --color-primary-tint-3: #fee2e2; /* body copy on solid red sections */
+  --color-primary-surface: #fef4f4; /* subtle red-tinted section background */
+  --color-primary-border: #f3d6d6; /* card borders on red-tinted sections */
+
+  /* Neutrals */
+  --color-white: #ffffff;
+  --color-text: #1a1a1a;
+  --color-heading: #111111;
+  --color-body: #374151;
+  --color-muted: #4b5563;
+  --color-subtle: #6b7280;
+  --color-faint: #9ca3af;
+  --color-border: #e5e7eb;
+  --color-surface-alt: #f9fafb;
+  --color-surface-hover: #fafafa;
+  --color-surface-hover-alt: #f3f4f6;
+
+  /* Dark surfaces (topbar, footer, hero overlay) */
+  --color-dark: #111827;
+  --color-dark-alt: #1f2937;
+  --color-footer-text: #d1d5db;
+  --color-footer-border: #374151;
+  --color-footer-muted: #6b7280;
+
+  /* Typography */
+  --font-family-base: 'Source Sans 3', system-ui, sans-serif;
+
+  /* Shadows */
+  --shadow-card: 0 4px 16px rgba(176, 18, 26, .06);
+  --shadow-card-hover: 0 10px 28px rgba(176, 18, 26, .12);
+  --shadow-photo: 0 24px 48px rgba(0, 0, 0, .35);
+  --shadow-map: 0 4px 16px rgba(0, 0, 0, .08);
+  --shadow-dropdown: 0 8px 16px rgba(0, 0, 0, .06);
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+
+  /* Motion */
+  --ease: .15s ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-base);
+  color: var(--color-text);
+  line-height: 1.5;
+  background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+a {
+  color: var(--color-primary);
+  transition: color var(--ease);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Skip link: off-screen until keyboard-focused */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: 10px 16px;
+  font-weight: 700;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
+  z-index: 1000;
+}
+
+/* Reusable eyebrow / kicker label used above section headings */
+.eyebrow {
+  color: var(--color-primary);
+  font-weight: 700;
+  letter-spacing: .06em;
+  font-size: 13px;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+
+/* Reusable buttons — shared mechanics only; each usage sets its own
+   padding/font-size via a container-scoped rule in styles.css, since the
+   original design uses slightly different sizing per placement. */
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  transition: background var(--ease), transform var(--ease), border-color var(--ease);
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+  color: var(--color-white);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--color-subtle);
+  color: var(--color-white);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-white);
+  color: var(--color-white);
+}
+
+.btn-light {
+  background: var(--color-white);
+  color: var(--color-primary);
+}
+
+.btn-light:hover {
+  background: var(--color-surface-hover-alt);
+  color: var(--color-primary);
+  transform: translateY(-1px);
+}

@@ -1,0 +1,117 @@
+/* ==========================================================================
+   Mobile breakpoint (<= 860px) — mirrors the desktop layout's single
+   original breakpoint. Loaded after styles.css so these overrides win by
+   source order without needing !important.
+   ========================================================================== */
+
+@media (max-width: 860px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-white);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 24px 16px;
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-dropdown);
+  }
+
+  .nav-links a {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-surface-hover-alt);
+  }
+
+  .nav-toggle:checked ~ .nav-links {
+    display: flex;
+  }
+
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .hero-content {
+    padding: 40px 20px;
+    min-height: 560px;
+  }
+
+  .hero-title {
+    font-size: 30px;
+  }
+
+  .quintos-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .quintos-btn {
+    justify-content: center;
+  }
+
+  .career-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .volunteer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .volunteer-media {
+    max-width: 340px;
+    margin: 0 auto;
+  }
+
+  .map-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .instituto-timeline {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 100%;
+  }
+
+  .instituto-timeline::before {
+    left: 6px;
+    right: auto;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    height: auto;
+  }
+
+  .timeline-item {
+    text-align: left;
+    padding-top: 0;
+    padding-left: 28px;
+  }
+
+  .timeline-item::before {
+    left: 0;
+    top: 4px;
+    transform: none;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .topbar-news-label {
+    display: none;
+  }
+
+  .topbar-label {
+    display: none;
+  }
+}

@@ -1,0 +1,891 @@
+/* ==========================================================================
+   Page layout and components — Instituto D-80 / Cruz Roja Argentina
+   Organized top-to-bottom in the same order the sections appear on the page.
+   ========================================================================== */
+
+/* ---- Topbar --------------------------------------------------------- */
+.topbar {
+  background: var(--color-dark-alt);
+  color: var(--color-border);
+  font-size: 13px;
+  padding: 6px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Latest-news teaser: zero-scroll visibility for current students without
+   pulling the full #noticias section up into the acquisition-focused part
+   of the page. min-width:0 + ellipsis lets it shrink on narrow screens
+   while .topbar-contact (right side) stays full width. */
+.topbar-news {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.topbar-news:hover {
+  color: var(--color-primary-tint-2);
+}
+
+.topbar-news-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary-tint-1);
+  flex: none;
+}
+
+.topbar-news-label {
+  font-weight: 600;
+  flex: none;
+}
+
+.topbar-news-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: .9;
+}
+
+.topbar-contact {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+}
+
+.topbar-phone {
+  color: var(--color-white);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.topbar-phone:hover {
+  color: var(--color-primary-tint-2);
+}
+
+/* ---- Header / navigation --------------------------------------------- */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--color-border);
+  flex-wrap: wrap;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  background: var(--color-white);
+  z-index: 100;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  width: 40px;
+  height: 40px;
+  flex: none;
+}
+
+.brand-name {
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--color-heading);
+}
+
+.brand-org {
+  font-size: 12px;
+  color: var(--color-subtle);
+}
+
+.nav-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mobile-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobile-toggle-bar {
+  width: 22px;
+  height: 2px;
+  background: var(--color-heading);
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--color-body);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+}
+
+.nav-cta {
+  background: var(--color-primary);
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+}
+
+.nav-cta:hover {
+  background: var(--color-primary-dark);
+  color: var(--color-white);
+}
+
+/* ---- Icons --------------------------------------------------------------
+   Decorative inline SVGs share the "icon" class; each context sets its own
+   size/stroke below (the source design uses a different size and color per
+   placement, so a single fixed icon size would not match). */
+.icon {
+  fill: none;
+}
+
+/* ---- Hero -------------------------------------------------------------- */
+.hero {
+  position: relative;
+  min-height: 760px;
+  box-sizing: border-box;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0) 0%, rgba(17, 24, 39, .35) 45%, rgba(17, 24, 39, .96) 100%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  min-height: 760px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 64px;
+  box-sizing: border-box;
+  animation: fadeUp .5s ease both;
+}
+
+.hero-content .eyebrow {
+  color: var(--color-primary-tint-1);
+}
+
+.hero-title {
+  color: var(--color-white);
+  font-size: 42px;
+  line-height: 1.2;
+  margin: 0 0 18px;
+  font-weight: 800;
+  max-width: 640px;
+}
+
+.hero-lead {
+  font-size: 18px;
+  color: var(--color-border);
+  margin: 0 0 32px;
+  max-width: 480px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero-actions .btn-primary {
+  padding: 16px 28px;
+  font-size: 16px;
+}
+
+.hero-actions .btn-outline {
+  padding: 14px 26px;
+  font-size: 16px;
+}
+
+/* ---- QUINTTOS access banner ------------------------------------------
+   Single focused CTA to the institution's academic management system
+   (inscriptions, exam boards, paperwork) — replaces what used to be a
+   generic 3-item quick-access row. */
+.quintos-banner {
+  background: var(--color-primary-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 20px 24px;
+}
+
+.quintos-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.quintos-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.quintos-logo {
+  height: 34px;
+  width: auto;
+  flex: none;
+}
+
+.quintos-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--color-primary-border);
+  flex: none;
+}
+
+.quintos-label {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-heading);
+  margin-bottom: 2px;
+}
+
+.quintos-desc {
+  font-size: 13px;
+  color: var(--color-subtle);
+}
+
+.quintos-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.quintos-btn .icon {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+/* ---- Shared section heading pattern (eyebrow + title + lead) -------- */
+.section-title {
+  font-size: 30px;
+  font-weight: 800;
+  margin: 0 0 8px;
+  color: var(--color-heading);
+}
+
+.section-lead {
+  color: var(--color-subtle);
+  font-size: 16px;
+  margin: 0 0 36px;
+  max-width: 620px;
+}
+
+/* ---- Carreras -------------------------------------------------------- */
+#carreras {
+  padding: 64px 24px;
+  background: linear-gradient(180deg, #fff 0%, var(--color-primary-surface) 100%);
+}
+
+.carreras-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.career-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.career-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-primary-border);
+  border-top: 3px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: var(--shadow-card);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.career-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.career-title {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.career-desc {
+  color: var(--color-muted);
+  font-size: 15px;
+  flex: 1;
+}
+
+.career-link {
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* ---- Instituto --------------------------------------------------------- */
+#instituto {
+  background: var(--color-surface-alt);
+  padding: 64px 24px;
+}
+
+.instituto-intro {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#instituto .eyebrow,
+#mapa .eyebrow {
+  margin-bottom: 12px;
+}
+
+.instituto-intro .section-title {
+  font-size: 28px;
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.instituto-intro p {
+  color: var(--color-body);
+  font-size: 16px;
+  margin: 0 0 16px;
+}
+
+.instituto-intro p:last-of-type {
+  margin: 0 0 28px;
+}
+
+.instituto-link {
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+/* A short founding timeline in place of vanity stat counters — the same
+   facts already told in the prose above, pulled out as scannable
+   milestones instead of glossy "75 / 2 / 100%" number tiles. */
+.instituto-timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 56px auto 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.instituto-timeline::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: calc(100% / 6);
+  right: calc(100% / 6);
+  height: 2px;
+  background: var(--color-primary-border);
+}
+
+.timeline-item {
+  position: relative;
+  text-align: center;
+  padding-top: 28px;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  border: 3px solid var(--color-white);
+  box-shadow: 0 0 0 1px var(--color-primary-border);
+}
+
+.timeline-year {
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin: 0 0 8px;
+}
+
+.timeline-text {
+  font-size: 14px;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+/* ---- Voluntariado ---------------------------------------------------- */
+/* Decorative texture for the solid-red sections: a soft corner glow plus a
+   fine dot grid, pure CSS gradients — no Cruz Roja emblem here. The
+   organization's emblem may only ever be shown as red-on-white, never
+   tinted/rotated/translucent as decoration, so it has no place on a red
+   background. This keeps the sections from reading as flat/empty instead. */
+#voluntariado,
+.cta {
+  background-image:
+    radial-gradient(circle at 88% -14%, rgba(255, 255, 255, .16), transparent 55%),
+    radial-gradient(rgba(255, 255, 255, .12) 1.5px, transparent 1.5px);
+  background-size: auto, 24px 24px;
+}
+
+#voluntariado {
+  position: relative;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 80px 24px;
+  overflow: hidden;
+}
+
+.volunteer-grid {
+  position: relative;
+  max-width: 1160px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 56px;
+  align-items: center;
+}
+
+#voluntariado .eyebrow {
+  color: var(--color-primary-tint-2);
+}
+
+.volunteer-title {
+  font-size: 36px;
+  font-weight: 800;
+  margin: 0 0 16px;
+  line-height: 1.15;
+}
+
+.volunteer-lead {
+  color: var(--color-primary-tint-3);
+  font-size: 16px;
+  margin: 0 0 36px;
+  max-width: 460px;
+}
+
+.volunteer-areas {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.vol-area {
+  background: rgba(255, 255, 255, .1);
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  transition: background .18s ease, transform .18s ease;
+}
+
+.vol-area:hover {
+  background: rgba(255, 255, 255, .16);
+  transform: translateX(4px);
+}
+
+.vol-area .icon {
+  width: 24px;
+  height: 24px;
+  stroke: var(--color-white);
+  stroke-width: 1.6;
+  flex: none;
+}
+
+.vol-title {
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.vol-desc {
+  font-size: 13px;
+  color: var(--color-primary-tint-3);
+}
+
+#voluntariado .btn-light {
+  padding: 14px 30px;
+  font-size: 15px;
+}
+
+.volunteer-media {
+  position: relative;
+}
+
+.volunteer-frame {
+  position: absolute;
+  inset: -14px;
+  border: 2px solid rgba(255, 255, 255, .35);
+  border-radius: 14px;
+  transform: rotate(3deg);
+  pointer-events: none;
+}
+
+.volunteer-photo {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-photo);
+  aspect-ratio: 5 / 4;
+}
+
+.volunteer-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---- Mapa ------------------------------------------------------------- */
+#mapa {
+  padding: 64px 24px;
+  background: var(--color-white);
+}
+
+.map-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.map-grid {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 48px;
+  align-items: stretch;
+}
+
+.map-frame {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-map);
+  min-height: 420px;
+  height: 100%;
+}
+
+.map-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.map-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 3px solid var(--color-primary);
+  padding-top: 20px;
+}
+
+.map-content .section-title {
+  font-size: 28px;
+  margin: 0 0 28px;
+}
+
+.map-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.map-detail {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.map-detail .icon {
+  width: 20px;
+  height: 20px;
+  stroke: var(--color-primary);
+  stroke-width: 1.6;
+  flex: none;
+}
+
+.map-address {
+  font-size: 15px;
+  color: var(--color-heading);
+  font-weight: 600;
+}
+
+.map-phone {
+  font-size: 15px;
+  color: var(--color-heading);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.map-phone:hover {
+  color: var(--color-primary);
+}
+
+.map-directions-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 28px;
+  font-size: 16px;
+  align-self: flex-start;
+}
+
+.map-directions-btn .icon {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+/* ---- Noticias ---------------------------------------------------------- */
+#noticias {
+  padding: 64px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 28px;
+}
+
+.news-header .section-title {
+  font-size: 26px;
+  margin: 0;
+}
+
+.news-header-link {
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-border);
+}
+
+.news-item {
+  display: flex;
+  gap: 20px;
+  padding: 18px 4px;
+  border-bottom: 1px solid var(--color-border);
+  align-items: baseline;
+  transition: background .15s ease;
+}
+
+.news-item:last-child {
+  border-bottom: none;
+}
+
+.news-item:hover {
+  background: var(--color-surface-hover);
+}
+
+.news-date {
+  font-size: 13px;
+  color: var(--color-faint);
+  font-weight: 700;
+  width: 90px;
+  flex: none;
+}
+
+.news-title {
+  font-size: 16px;
+  margin: 0 0 4px;
+  font-weight: 700;
+}
+
+.news-desc {
+  font-size: 14px;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+/* ---- Final CTA ---------------------------------------------------------- */
+.cta {
+  position: relative;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 64px 24px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.cta-content {
+  position: relative;
+}
+
+.cta .eyebrow {
+  color: var(--color-primary-tint-2);
+}
+
+.cta-title {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0 0 14px;
+}
+
+.cta-lead {
+  font-size: 16px;
+  margin: 0 0 32px;
+  color: var(--color-primary-tint-3);
+}
+
+.cta-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-actions .btn-light {
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.cta-actions .btn-outline {
+  padding: 14px 30px;
+  font-size: 16px;
+  border-color: rgba(255, 255, 255, .6);
+}
+
+/* ---- Footer ------------------------------------------------------------ */
+.site-footer {
+  background: var(--color-dark);
+  color: var(--color-footer-text);
+  padding: 48px 24px 24px;
+}
+
+.footer-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+}
+
+.footer-title {
+  font-weight: 800;
+  color: var(--color-white);
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.footer-col .footer-title {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.footer-col:first-child .footer-title {
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.footer-tagline {
+  font-size: 14px;
+  margin: 0;
+  color: var(--color-footer-muted);
+}
+
+.footer-address {
+  font-style: normal;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-address a {
+  color: var(--color-footer-text);
+  text-decoration: none;
+}
+
+.footer-address a:hover {
+  color: var(--color-white);
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.footer-nav a {
+  color: var(--color-footer-text);
+  text-decoration: none;
+}
+
+.footer-nav a:hover {
+  color: var(--color-white);
+}
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 32px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-footer-border);
+  font-size: 12px;
+  color: var(--color-footer-muted);
+}
