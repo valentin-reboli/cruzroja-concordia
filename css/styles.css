@@ -3,6 +3,62 @@
    Organized top-to-bottom in the same order the sections appear on the page.
    ========================================================================== */
 
+/* ---- Skeleton loading ------------------------------------------------
+   Applied via JS (skeleton.js) to three containers that hold async media:
+   .hero (hero image), .volunteer-photo (lazy img), .map-frame (iframe).
+
+   Lifecycle:
+     1. HTML ships with `is-loading` on the container.
+     2. JS fires `resolve()` on the media's `load` event → adds `loaded`.
+     3. The ::before shimmer fades to opacity 0 (transition: 300 ms).
+     4. JS removes both classes on `transitionend`, leaving a clean DOM.
+   ---------------------------------------------------------------------- */
+@keyframes skeleton-shimmer {
+  from { background-position: -200% center; }
+  to   { background-position:  200% center; }
+}
+
+/* Light shimmer — used on volunteer-photo and map-frame */
+.is-loading {
+  position: relative;
+}
+
+.is-loading::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--color-border)           25%,
+    var(--color-surface-hover-alt) 50%,
+    var(--color-border)           75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  transition: opacity .3s ease;
+  pointer-events: none;
+}
+
+/* Dark shimmer variant for the hero, whose background is dark */
+.hero.is-loading::before {
+  background: linear-gradient(
+    90deg,
+    rgba(17, 24, 39, .9)  25%,
+    rgba(17, 24, 39, .65) 50%,
+    rgba(17, 24, 39, .9)  75%
+  );
+  /* Hero overlay already sits at z-index 1; shimmer goes above it
+     but below hero-content (which uses position:relative) */
+  z-index: 1;
+}
+
+/* Fade-out state added by JS right before transitionend cleanup */
+.is-loading.loaded::before {
+  opacity: 0;
+}
+
 /* ---- Topbar --------------------------------------------------------- */
 .topbar {
   background: var(--color-dark-alt);
